@@ -10,8 +10,21 @@
           <a class="nav-link " aria-current="page" href="{{ url_for('user.users_list') }}">Users</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('article.articles_list') }}">Articles</a>
+            <a class="nav-link" href="{{ url_for('article.articles_list') }}">Articles</a>
         </li>
+        {% if not current_user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.signup') }}">SignUp</a>
+            </li>
+        {% endif %}
+        {% if current_user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+            </li>
+        {% endif %}
       </ul>
     </div>
   </div>

@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, redirect
+from flask_login import login_required
 from werkzeug.exceptions import NotFound
 
 article = Blueprint('article', __name__, url_prefix='/articles', static_folder='../static')
@@ -26,6 +27,7 @@ ARTICLES = [
 
 
 @article.route('/')
+@login_required
 def articles_list():
     return render_template('articles/list.html', articles=ARTICLES)
 
@@ -33,8 +35,8 @@ def articles_list():
 @article.route('/<int:pk>')
 def get_article(pk):
     try:
-        article = ARTICLES[pk]
+        _article = ARTICLES[pk]
     except KeyError:
         # raise NotFound(f'User id {pk} not found')
         return redirect('/articles')
-    return render_template('articles/detail.html', article=article)
+    return render_template('articles/detail.html', article=_article)
