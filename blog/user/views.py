@@ -5,23 +5,18 @@ from blog.models.user import User
 
 user = Blueprint('user', __name__, url_prefix='/users', static_folder='../static')
 
-USERS = {1: 'Mike',
-         2: 'John',
-         3: 'Pablo'
-         }
-
 
 @user.route('/')
 def users_list():
-    # users = User.query.all()
-    return render_template('users/list.html', users=USERS)
+    _users = User.query.all()
+    return render_template('users/list.html', users=_users)
 
 
 @user.route('/<int:pk>')
 def get_user(pk):
     try:
-        user_name = USERS[pk]
-    except KeyError:
+        _user = User.query.filter_by(id=pk).first()
+    except Exception:
         # raise NotFound(f'User id {pk} not found')
         return redirect('/users')
-    return render_template('users/detail.html', user_name=user_name)
+    return render_template('users/detail.html', user=_user)

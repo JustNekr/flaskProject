@@ -4,3 +4,4 @@
 test
 /blog/db.sqlite
 /blog/.env
+/test.py

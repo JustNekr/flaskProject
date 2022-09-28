@@ -2,10 +2,12 @@
 
 {% block title %}
     {{ super() }}
-    {{ user_name }}
+    {{ user.name }}
 {% endblock %}
 
 
 {% block body %}
-    <p>{{ user_name }}</p>
+    <p>{{ user.id }}</p>
+    <p>{{ user.email }}</p>
+    <p>{{ user.name }}</p>
 {% endblock %}
