@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, redirect
 from werkzeug.exceptions import NotFound
 
+from blog.models.user import User
+
 user = Blueprint('user', __name__, url_prefix='/users', static_folder='../static')
 
 USERS = {1: 'Mike',
@@ -11,6 +13,7 @@ USERS = {1: 'Mike',
 
 @user.route('/')
 def users_list():
+    # users = User.query.all()
     return render_template('users/list.html', users=USERS)
 
 
