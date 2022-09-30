@@ -33,6 +33,8 @@ def register_migrate(app: Flask):
 def register_login_manager(app: Flask):
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
+    login_manager.login_message = 'Authorize plz'
+    login_manager.login_message_category = 'success'
     login_manager.init_app(app)
     from blog.models.user import User
 
