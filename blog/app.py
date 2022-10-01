@@ -1,6 +1,6 @@
 from flask import Flask
 from blog.extensions import register_blueprints, register_commands, register_db, register_login_manager, \
-    register_migrate
+    register_migrate, register_csrf
 
 
 def create_app() -> Flask:
@@ -13,6 +13,7 @@ def create_app() -> Flask:
     register_db(app)
     register_migrate(app)
     register_login_manager(app)
+    register_csrf(app)
 
     return app
 

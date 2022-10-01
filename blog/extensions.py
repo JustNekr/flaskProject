@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_login import LoginManager
 from flask_migrate import Migrate
+from flask_wtf import CSRFProtect
 
 from blog.article.views import article
 from blog.auth.views import auth
@@ -45,3 +46,7 @@ def register_login_manager(app: Flask):
         # since the user_id is just the primary key of our user table, use it in the query for the user
         return User.query.get(int(user_id))
 
+
+def register_csrf(app: Flask):
+    csrf = CSRFProtect()
+    csrf.init_app(app)
