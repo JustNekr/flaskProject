@@ -6,3 +6,4 @@ test
 /blog/.env
 /test.py
 /pgdata/
+__pycahe__
