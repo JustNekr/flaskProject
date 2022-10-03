@@ -7,14 +7,14 @@ from blog.article.views import article
 from blog.auth.views import auth
 from blog.commands import init_db, create_users
 from blog.main.views import main
-from blog.models.database import db
+from blog.database import db
+from blog.database.models import User
 from blog.user.views import user
 
 
 def register_commands(app: Flask):
     app.cli.add_command(init_db, 'init_db')
     app.cli.add_command(create_users, 'create_users')
-    return app
 
 
 def register_blueprints(app: Flask):
@@ -39,11 +39,9 @@ def register_login_manager(app: Flask):
     login_manager.login_message = 'Authorize plz'
     login_manager.login_message_category = 'success'
     login_manager.init_app(app)
-    from blog.models.user import User
 
     @login_manager.user_loader
     def load_user(user_id):
-        # since the user_id is just the primary key of our user table, use it in the query for the user
         return User.query.get(int(user_id))
 
 

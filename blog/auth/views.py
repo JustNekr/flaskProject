@@ -3,8 +3,8 @@ from flask_login import login_required, logout_user, login_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from blog.forms.auth import LoginForm, RegisterForm
-from blog.models.database import db
-from blog.models.user import User
+from blog.database import db
+from blog.database.models import User
 
 auth = Blueprint('auth', __name__, url_prefix='/auth', static_folder='../static')
 

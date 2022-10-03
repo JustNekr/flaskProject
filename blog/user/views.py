@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect
 
-from blog.models.user import User
+from blog.database.models import User
 
 user = Blueprint('user', __name__, url_prefix='/users', static_folder='../static')
 
@@ -16,6 +16,5 @@ def get_user(pk):
     try:
         _user = User.query.filter_by(id=pk).first()
     except Exception:
-        # raise NotFound(f'User id {pk} not found')
         return redirect('/users')
     return render_template('users/detail.html', user=_user)

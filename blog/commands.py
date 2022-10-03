@@ -2,8 +2,8 @@ import click
 from flask.cli import with_appcontext
 from werkzeug.security import generate_password_hash
 
-from blog.models.database import db
-from blog.models.user import User
+from blog.database import db
+from blog.database.models import User
 
 
 @click.command()
