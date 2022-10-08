@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ super() }}
+    Services
+{% endblock %}
+
+
+{% block body %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">name</th>
+            <th scope="col">price</th>
+            <th scope="col">duration</th>
+            <th scope="col">description</th>
+            <th scope="col">appointment</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for service in services %}
+        <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <th scope="col">{{ service.name }}</th>
+            <th scope="col">{{ service.price }}</th>
+            <th scope="col">{{ service.duration }}</th>
+            <th scope="col">{{ service.description }}</th>
+            <th scope="col">
+                <a class="btn btn-info" href="{{ url_for('main.appointment', pk=service.id) }}">appointment</a>
+            </th>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ super() }}
+    Services
+{% endblock %}
+
+
+{% block body %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">name</th>
+            <th scope="col">Work Place</th>
+            <th scope="col">appointment</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for barber in barbers %}
+        <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <th scope="col">{{ barber.user.name }}</th>
+            <th scope="col">{{ barber.work_place }}</th>
+            <th scope="col">
+                <a class="btn btn-info" href="{{ url_for('main.appointment', barber_id=barber.id) }}">appointment</a>
+            </th>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectMultipleField, SelectField, widgets
 from wtforms.validators import Email, DataRequired, Length, EqualTo
 
 
@@ -23,3 +23,14 @@ class RegisterForm(FlaskForm):
 
     password_2 = PasswordField("Повтор пароля: ", validators=[DataRequired(), EqualTo('password', message="Пароли не совпадают")])
     submit = SubmitField("Регистрация")
+
+
+class MultiCheckboxField(SelectMultipleField):
+    widget = widgets.ListWidget(prefix_label=False)
+    option_widget = widgets.CheckboxInput()
+
+
+class AppointmentForm(FlaskForm):
+    barber = SelectField("Барбер", validators=[DataRequired(message='choose barber')])
+    services = MultiCheckboxField("Услуги", validators=[DataRequired(message='choose even 1 service')])
+    submit = SubmitField("заказ")
